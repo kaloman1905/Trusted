@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+@font-face {
+    font-family: 'ethiopic_dire_dawaregular';
+    src: url('dire_dawa-webfont.woff2') format('woff2'),
+         url('dire_dawa-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background: linear-gradient(to bottom, rgb(236, 196, 16), rgb(28, 192, 241));
+    margin: 0;
+    padding: 0;
+    font-family: 'ethiopic_dire_dawaregular';
+}
+.nav {
+    background-color: rgba(0, 0, 0, 0.055);
+    overflow: hidden;
+    border-bottom: 1px solid black;
+}
+.nav a {
+    float: right;
+    display: block;
+    text-decoration: none;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 21px 35px;
+    font-size: 20px;
+    background-color: rgba(39, 36, 32, 0.63);
+}
+.nav a:hover {
+    background-color: rgb(0, 136, 45);
+    transition-duration: 1s;
+}
+.rel {
+    position: relative;
+    background-color: black;
+    height: 100%;
+    width: 40%;
+    float: right;
+    overflow-y: auto;
+}
+.logo {
+    height: 63px;
+    width: 200px;
+}
+.main {
+    background-color: rgb(71, 59, 59);
+    height: 100%;
+    width: 60%;
+    display: inline-block;
+    margin: auto;
+    overflow-y: auto;
+}
+.related {
+
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    border-bottom: 1px white solid;
+    padding-bottom: 15px;
+}
+.cont {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    display: block;
+    margin-top: 40px;
+    padding-bottom: 50px;
+    width: 85%;
+    border-radius: 10px;
+    word-break: break-all;
+}
+.tag {
+
+    bottom: 0;
+    margin-right: 4px;
+    padding-left: 2px;
+    border-left: 2px rgb(21, 240, 185) solid;
+    word-break: keep-all;
+    padding: 10px;
+}
+.icon {
+    display: none;
+    font-size: 20px;
+    padding: 24px 35px;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    float: right;
+    background-color: rgba(39, 36, 32, 0.63);
+    border: none;
+    cursor: pointer;
+}
+.icon:hover {
+    background-color: rgb(0, 136, 45);
+    transition-duration: 1s;
+}
+@media screen and (max-width: 606px) {
+    .nav a {
+        display: none;
+    }
+    .main {
+        display: block;
+        width: 100%;
+        overflow: auto;
+    }
+    .rel {
+        width: 100%;
+    }
+    .icon {
+        display: inline-block;
+    }
+}
+.des {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    
+}
+.name {
+
+    font-weight: 900;
+    font-size: 20px; 
+    font-weight: 400;
+    padding: 10px; 
+}
+.input {
+    border-radius: 50px 0px 0px 50px;
+
+    font-weight: 20;
+    font-size: 20px;
+    border: 2px solid green;
+    min-width: 20px;
+    border-right: 0px;
+    margin-right: 0px;
+    padding-right: 0px;
+    width: 85%;
+    height: 50px;
+    background-color: transparent;
+    outline: none;
+    color: white;
+}
+.search {
+    border-radius: 0px 20px 20px 0px;
+    border-left: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    border: 2px solid green;
+    width: 12%;
+    height: 50px;
+    min-width: 50px;
+    background-color: white;
+}
+.search:hover {
+    background-color: teal;
+    transition-duration: 1s;
+}
+.form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    border-radius: 15px;
+}
+.resul {
+    height: auto;
+}
+.loading {
+    text-align: center;
+    background-color: transparent;
+    width: 100%;
+    display: block;
+    margin-top: 40px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+}
+.loading-s {
+    text-align: center;
+    background-color: transparent;
+    width: 100%;
+    display: block;
+    margin-top: 40px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+}
+.h2 {
+    text-align: center;
+    padding: 25px 30px;
+    color: red;
+
+    font-weight: 400;
+    padding-top: 10px; 
+    margin-top: 10px;
+}
+.er-img {
+    display: block;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+.tg {
+    font-size: 15px;
+
+    padding: 20px 30px;
+    border-radius: 5px;
+    border: 1px green solid;
+    background-color: transparent;
+}
+.tg:hover {
+    background-color: teal;
+    transition-duration: 1s;
+}
+.compi  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+.campn {
+    float: right;
+
+    bottom: 0;
+    margin-right: 4px;
+    padding-left: 2px;
+    font-size: 25px;
+    border-left: 2px rgb(21, 240, 185) solid;
+    word-break: keep-all;
+    padding: 10px;
+}
+.navbar a {
+    display: block;
+    text-decoration: none;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 21px 35px;
+    font-size: 20px;
+    background-color: rgba(39, 36, 32, 0.63);
+    border-bottom: 1px solid black;
+}
+.navbar a:hover {
+    background-color: rgb(0, 136, 45);
+    transition-duration: 1s;
+}
+.s-button {
+    display: block;
+    text-decoration: none;
+    color: #f2f2f2;
+    padding: 21px 35px;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 20px;
+    background-color: rgba(39, 36, 32, 0.63);
+    border-bottom: 1px solid black;
+}
+.s-button:hover {
+    background-color: rgb(0, 136, 45);
+    transition-duration: 1s;
+}
+.n-button {
+    display: none;
+}

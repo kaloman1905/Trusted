@@ -1,0 +1,466 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trusted Source</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="./jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function request() { 
+            $("#try_again").hide();
+            $("#try_again1").hide();
+            var limit = $("#limit").val();
+            var offset = $("#offset").val();
+            var loading = "<h2 class='h2' id='h2'>ውጤቶችን በማግኘት ላይ .......</h2>";
+
+                $('#loading-t').empty()
+                $(".loading").css('background-color', 'white');
+                $('#loading-t').append(loading);
+
+           
+               $.ajax({
+                timeout : 40000,
+                url: 'https://trusted9.000webhostapp.com/fetch.php',
+                type: 'post',
+                data: {limit : limit, offset : offset},
+                dataType: 'JSON',
+                success: function(response){
+                    var len = response.length;
+                    if(len == '' || len == 0 || len == null) {
+                        var loading10 = "<h2 class='h2' id='h2'>ምንም ውጤት አልተገኘም!!</h2>";
+                                $('#loading-t').empty();
+                                $(".loading").css('background-color', 'white');
+                                $('#loading-t').append(loading10); 
+                            }
+                    for(var i=0; i<len; i++){
+                            var Title = response[i].Title;
+                            var Date = response[i].Date;
+                            var Main = response[i].Main;
+                            var Time = response[i].Time;
+                            var File = response[i].File;
+                            var Logo = response[i].Logo;
+                            var Who = response[i].Who;
+
+                            var comp =
+                                "<div class='cont'>" +
+                                "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                "<img src='"+ Logo +"'>"+
+                                "<p class='campn'>" + Who +"<p>"+
+                                "</div>"+
+                                "<div style='display: flex; justify-content: space-between; border-bottom: solid green 2px;'>" +
+                                "<p  class='name'>" + Title + "</p>" +
+                                "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                "</div>" +
+                                "<p  class='des'>" + Main + "</p>" +
+                                "</div>";
+                            if (File != '') {
+                                var mediatype = '';
+                                if (File.substr(File.length - 3).toLowerCase() == 'jpg' || File.substr(File.length - 4).toLowerCase() == 'jepg' ||  File.substr(File.length - 3).toLowerCase() =='png' ||  File.substr(File.length - 3).toLowerCase() == 'gif') {
+                                    mediatype = "<img class='image' src=" + File + ">"
+                                }
+                                else if (File.substr(File.length - 3).toLowerCase() == 'mp4'  ||  File.substr(File.length - 3).toLowerCase() == 'wmv' ) {
+                                    mediatype = "<video class='image' src=" + File + " controls>"
+                                }
+                                comp =
+                                "<div class='cont'>" +
+                                "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                "<img src='"+ Logo +"'>"+
+                                "<p class='campn'>" + Who +"<p>"+
+                                "</div>"+
+                                "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                "<p  class='name'>" + Title + "</p>" +
+                                "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                "</div>" +
+                                "<p  class='des'>" + Main + "</p>" +
+                                mediatype +
+                                "</div>";
+                            }
+        
+                        $("#result").append(comp);
+                        $('#loading-t').empty();
+                        $("#try_again").hide();
+                    }
+                },
+                error: function() {
+                var loading1 = "<h2 class='h2' id='h2'>ከ በይነ መረብ ጋር መገናኘት አልተቻለም እባክዎ ግንኙነቶን ያረጋግጡ፡፡</h2>";
+                                $('#loading-t').empty();
+                                $(".loading").css('background-color', 'white');
+                                $('#loading-t').append(loading1);
+                                $("#try_again").show();
+                }
+        
+            });
+           }
+           request();
+           $("#try_again").click(function() {
+               request();
+           });
+        });
+        </script>
+        <script>
+            $(document).ready(function(){
+                $("#name").click(function(){
+                    function request5() {
+                    $("#try_again1").hide();
+                    $("#resul").empty();
+                    var search = $("#search").val();
+            
+                    if (search.length <= 4) {
+                        alert('እባክዎትን ቢያንስ አምስት ፊደላትን ያስገቡ፡፡');
+                    }
+                    else {
+                        var limit = $("#limit").val();
+                        var offset = $("#s-offset").val();
+
+                        var loading = "<h2 class='h2' id='h2'>ውጤቶችን በማግኘት ላይ .......</h2>";
+
+                            $('#loading-s-t').empty()
+                            $(".loading-s").css('background-color', 'white');
+                            $('#loading-s-t').append(loading);
+
+            
+                    $.ajax({
+                    timeout : 40000,
+                    url: 'https://trusted9.000webhostapp.com/post.php',
+                    data: {search : search, limit : limit, offset : offset},
+                    type: 'post',
+                    dataType: 'JSON',
+                    success: function(response){
+                        var len = response.length;
+                        if(len == '' || len == 0 || len == null) {
+                            var loading2 = "<h2 class='h2'>ምንም ውጤት አልተገኘም!</h2>";
+                                $('#loading-s-t').empty();
+                                $("#try_again1").hide();
+                                $(".loading-s").css('background-color', 'white');
+                                $('#loading-s-t').append(loading2);
+                        }
+                        for(var i=0; i<len; i++){
+                            var Title = response[i].Title;
+                            var Date = response[i].Date;
+                            var Main = response[i].Main;
+                            var Time = response[i].Time;
+                            var File = response[i].File;
+                            var Logo = response[i].Logo;
+                            var Who = response[i].Who;
+
+                            var comp =
+                                "<div class='cont'>" +
+                                "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                "<img src='"+ Logo +"'>"+
+                                "<p class='campn'>" + Who +"<p>"+
+                                "</div>"+
+                                "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                "<p  class='name'>" + Title + "</p>" +
+                                "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                "</div>" +
+                                "<p  class='des'>" + Main + "</p>" +
+                                "</div>";
+                            if (File != '') {
+                                var mediatype = '';
+                                if (File.substr(File.length - 3).toLowerCase() == 'jpg' || File.substr(File.length - 4).toLowerCase() == 'jepg' ||  File.substr(File.length - 3).toLowerCase() =='png' ||  File.substr(File.length - 3).toLowerCase() == 'gif') {
+                                    mediatype = "<img class='image' src=" + File + " >"
+                                }
+                                else if (File.substr(File.length - 3).toLowerCase() == 'mp4'  ||  File.substr(File.length - 3).toLowerCase() == 'wmv' ) {
+                                    mediatype = "<video class='image' src=" + File + " controls>"
+                                }
+                                comp = 
+                                "<div class='cont'>" +
+                                "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                "<img src='"+ Logo +"'>"+
+                                "<p class='campn'>" + Who +"<p>"+
+                                "</div>"+
+                                "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                "<p  class='name'>" + Title + "</p>" +
+                                "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                "</div>" +
+                                "<p  class='des'>" + Main + "</p>" +
+                                mediatype +
+                                "</div>";
+                            }
+
+                            $("#resul").append(comp);
+                            $('#loading-s-t').empty();
+                            
+                                }
+                            },
+                    error: function() {
+                        var loading9 = "<h2 class='h2' id='h2'>ከ በይነ መረብ ጋር መገናኘት አልተቻለም እባክዎ ግንኙነቶን ያረጋግጡ፡፡</h2>";
+                                $('#loading-s-t').empty();
+                                $(".loading-s").css('background-color', 'white');
+                                $('#loading-s-t').append(loading9);
+                                $("#try_again1").show();
+                }
+                    });
+                    
+                }
+            }
+                request5();
+                $("#try_again1").click(function() {
+                    request5();
+                });
+            });
+            });
+        </script>
+        <script>
+jQuery(function($) {
+    var limit = $("#limit").val();
+    var offset = $("#offset").val();
+    $('#main').on('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            function srequest2() {
+            var loading = "<h2 class='h2' id='h2'>ውጤቶችን በማግኘት ላይ...... </h2>";
+
+            if($("#check").val() == 0)
+            {
+             offset = +offset + 10;
+            }
+
+                $('#loading-t').empty();
+                $(".loading").css('background-color', 'white');
+                $("#try_again").hide();
+                $('#loading-t').append(loading);
+                $("#check").val(1);
+
+               $.ajax({
+                timeout : 40000,
+                url: 'https://trusted9.000webhostapp.com/fetch.php',
+                type: 'post',
+                data: {limit : limit, offset : offset},
+                dataType: 'JSON',
+                success: function(response){
+                    var len = response.length;
+                    for(var i=0; i<len; i++){
+                            var Title = response[i].Title;
+                            var Date = response[i].Date;
+                            var Main = response[i].Main;
+                            var Time = response[i].Time;
+                            var File = response[i].File;
+                            var Logo = response[i].Logo;
+                            var Who = response[i].Who;
+
+                            var comp =
+                                "<div class='cont'>" +
+                                "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                "<img src='"+ Logo +"'>"+
+                                "<p class='campn'>" + Who +"<p>"+
+                                "</div>"+
+                                "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                "<p  class='name'>" + Title + "</p>" +
+                                "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                "</div>" +
+                                "<p  class='des'>" + Main + "</p>" +
+                                "</div>";
+                            if (File != '') {
+                                var mediatype = '';
+                                if (File.substr(File.length - 3).toLowerCase() == 'jpg' || File.substr(File.length - 4).toLowerCase() == 'jepg' ||  File.substr(File.length - 3).toLowerCase() =='png' ||  File.substr(File.length - 3).toLowerCase() == 'gif') {
+                                    mediatype = "<img class='image' src=" + File + ">"
+                                }
+                                else if (File.substr(File.length - 3).toLowerCase() == 'mp4'  ||  File.substr(File.length - 3).toLowerCase() == 'wmv' ) {
+                                    mediatype = "<video class='image' src=" + File + " controls>"
+                                }
+                                comp = 
+                                "<div class='cont'>" +
+                                "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                "<img src='"+ Logo +"'>"+
+                                "<p class='campn'>" + Who +"<p>"+
+                                "</div>"+
+                                "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                "<p  class='name'>" + Title + "</p>" +
+                                "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                "</div>" +
+                                "<p  class='des'>" + Main + "</p>" +
+                                mediatype +
+                                "</div>";
+                            }
+                            
+                        $("#result").append(comp);
+                        $('#loading-t').empty();
+                        $("#check").val(0);
+                    }
+                    if(len == '' || len == 0 || len == null) {
+                        var loading11 = "<h2 class='h2' id='h2'>ሌሎች ውጤቶች የሉም፡፡</h2>";
+                                $('#loading-t').empty()
+                                $("#try_again").hide();
+                                $(".loading").css('background-color', 'white');
+                                $('#loading-t').append(loading11); 
+                            }
+                },
+                error: function() {
+                var loading1 = "<h2 class='h2' id='h2'>ከ በይነ መረብ ጋር መገናኘት አልተቻለም እባክዎ ግንኙነቶን ያረጋግጡ፡፡</h2>";
+                                $('#loading-t').empty();
+                                $(".loading").css('background-color', 'white');
+                                $('#loading-t').append(loading1);
+                                $("#try_again").show();
+                                $("#check").val(1);
+                }
+            });
+        }
+        srequest2();
+        $("#try_again").click(function() {
+                srequest2();
+            });
+    }
+    });
+});
+        </script>
+         <script>
+            jQuery(function($) {
+                var limit = $("#limit").val();
+                var offset = $("#s-offset").val();
+                $('#rel').on('scroll', function() {
+                    function srequest() {
+                    if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                
+                        if($("#check1").val() == 0)
+                        {
+                             offset = +offset + 10;
+                        }
+
+                        var loading = "<h2 class='h2' id='h2'>ውጤቶችን በማግኘት ላይ .......</h2>";
+
+                            $('#loading-s-t').empty();
+                            $(".loading-s").css('background-color', 'white');
+                            $('#loading-s-t').append(loading);
+                            $("#check1").val(1);
+
+                          $.ajax({
+                            timeout : 40000,
+                            url: 'https://trusted9.000webhostapp.com/post.php',
+                            type: 'post',
+                            data: {limit : limit, offset : offset},
+                            dataType: 'JSON',
+                            success: function(response){
+                                var len = response.length;
+                                
+                                for(var i=0; i<len; i++){
+                                        var Title = response[i].Title;
+                                        var Date = response[i].Date;
+                                        var Main = response[i].Main;
+                                        var Time = response[i].Time;
+                                        var File = response[i].File;
+                                        var Logo = response[i].Logo;
+                                        var Who = response[i].Who;
+            
+                                        var comp =
+                                            "<div class='cont'>" +
+                                            "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                            "<img src='"+ Logo +"'>"+
+                                            "<p class='campn'>" + Who +"<p>"+
+                                            "</div>"+
+                                            "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                            "<p  class='name'>" + Title + "</p>" +
+                                            "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                            "</div>" +
+                                            "<p  class='des'>" + Main + "</p>" +
+                                            "</div>";
+                                        if (File != '') {
+                                            var mediatype = '';
+                                            if (File.substr(File.length - 3).toLowerCase() == 'jpg' || File.substr(File.length - 4).toLowerCase() == 'jepg' ||  File.substr(File.length - 3).toLowerCase() =='png' ||  File.substr(File.length - 3).toLowerCase() == 'gif') {
+                                                mediatype = "<img class='image' src=" + File + ">"
+                                            }
+                                            else if (File.substr(File.length - 3).toLowerCase() == 'mp4'  ||  File.substr(File.length - 3).toLowerCase() == 'wmv' ) {
+                                                mediatype = "<video class='image' src=" + File + " controls>"
+                                            }
+                                            comp =
+                                            "<div class='cont'>" +
+                                            "<div style='display: inline-block; border-bottom: solid black 1px; width: 100%;' class='compi'>"+
+                                            "<img src='"+ Logo +"'>"+
+                                            "<p class='campn'>" + Who +"<p>"+
+                                            "</div>"+
+                                            "<div style='display: flex; justify-content: space-between; border-bottom: solid black 1px;'>" +
+                                            "<p  class='name'>" + Title + "</p>" +
+                                            "<p  class='tag'>" + Date +' '+ Time + "</p>" +
+                                            "</div>" +
+                                            "<p  class='des'>" + Main + "</p>" +
+                                            mediatype +
+                                            "</div>";
+                                        }
+            
+                                    $("#resul").append(comp);
+                                    $("#check1").val(0);
+                                }
+                            if(len == '' || len == 0 || len == null) {
+                                var loading3 = "<h2 class='h2' id='h2'>ሌሎች ውጤቶች የሉም፡፡</h2>";
+                                $('#loading-s-t').empty()
+                                $("#try_again1").hide();
+                                $(".loading-s").css('background-color', 'white');
+                                $('#loading-s-t').append(loading3); 
+                            }
+                            },
+                            error: function() {
+                                var loading13 = "<h2 class='h2' id='h2'>ከ በይነ መረብ ጋር መገናኘት አልተቻለም እባክዎ ግንኙነቶን ያረጋግጡ፡፡</h2>";
+                                $('#loading-s-t').empty();
+                                $(".loading-s").css('background-color', 'white');
+                                $('#loading-s-t').append(loading13);
+                                $("#try_again1").show()
+                                $("#check1").val(1);
+                }
+                        });
+                    }
+                }
+                    srequest();
+                    $("#try_again1").click(function() {
+                    srequest();
+                    });
+                });
+            });
+                    </script>
+                    <script>
+                        function nav(){
+                                var nav = document.getElementById("nav");
+                                var search = document.getElementById("n-search");
+                                if (nav.className == "nav") {
+                                    nav.className = "navbar";
+                                    search.className = "s-button";
+                                 }
+                                else {
+                                    nav.className = "nav";
+                                    search.className = "n-button";
+                                }
+                        };
+                    </script>
+                    <script>
+                        function search(){
+                            window.scrollTo(0,document.body.scrollHeight);
+                        }
+                    </script>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav" id="nav">
+        <img src="logo.png" class="logo">
+        <a href="BTM.html" class="a1">ታማኝ አባል ይሁኑ</a>
+        <a href="About.html" class="a2">ስለ እኛ</a>
+        <button onclick="search()" class="n-button" id="n-search"><i class='bi bi-search'></i></button>
+        <button class="icon" onclick="nav()"><i class="bi bi-list"></i></button>
+    </div>
+    <div class="main" id="main">
+        <div id="result"></div>
+        <div id="loading" class="loading">
+            <div id="loading-t"></div>
+            <button id='try_again' class="tg">እንደገና ሞክር</button>
+        </div>
+    </div>
+    <div class="rel" id="rel">
+        <h1 class="related">ፈልግ</h1>
+        <div class="form">
+        <input type="text" class="input" id="search" required autocomplete="off">
+        <button class="search" id="name" ><i class="bi bi-search"></i></button>
+        </div>
+        <div style="display: block;" id="resul" class="resul">
+            
+        </div>
+        <div class="loading-s" id="loading-s">
+            <div class="loading-s-t" id="loading-s-t"></div>
+            <button id='try_again1' class="tg">እንደገና ሞክር</button>
+        </div>
+    </div>
+    <input type="hidden" name="limit" id="limit" value="10">
+    <input type="hidden" name="offset" id="offset" value="0">
+    <input type="hidden" name="s-offset" id="s-offset" value="0">
+    <input type="hidden" id="check" value="0">
+    <input type="hidden" id="check1" value="0">
+</body>
+</html>
